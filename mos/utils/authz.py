@@ -57,7 +57,7 @@ def gen_single_authz(reponame):
     if reponame == 'irepresentalltherepos':
         auth_file = SVN_HTTPD_AUTHZ
     else:
-        auth_file = os.path.join(REPOS_DIRS,reponame,'conf\\authz')
+        auth_file = os.path.join(REPOS_DIRS,reponame,'conf/authz')
     check_file_exists(auth_file)
     #对配置文件进行写入
     cf = configparser.ConfigParser()
@@ -96,7 +96,7 @@ def gen_single_authz(reponame):
         for auth in group_auths:
             #print(auth)
             if not cf.has_section(auth['authitem']):
-                cf.add_section(+ auth['authitem'])
+                cf.add_section(auth['authitem'])
             cf.set(auth['authitem'],'@'+auth['groupname'],Info2RW(auth['authtype']))         
     cf.write(open(auth_file,"w"))
 
@@ -126,7 +126,7 @@ def gen_svnserver_authzs():
 
 #为单个库生成svnserver认证方式下的user文件
 def gen_single_svn_server_users(reponame):
-    users_file = os.path.join(REPOS_DIRS,reponame,'conf\\passwd')
+    users_file = os.path.join(REPOS_DIRS,reponame,'conf/passwd')
     check_file_exists(users_file) 
     users = get_user_passwd(reponame)
     cf = configparser.ConfigParser()
