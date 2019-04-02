@@ -67,7 +67,9 @@ def get_user_passwd(reponame):
     if reponame=='irepresentalltherepos':
         sql = 'select username,password from users'
     else:
-        sql = 'select username,password from users cross join auth_users,repos,auth_items where auth_users.user_id=users.id and auth_users.authitem_id = auth_items.id and auth_items.repo_id = repos.id and repos.reponame = \'' + reponame +'\' order by reponame,authitem,username,authtype'
+        #sql = 'select username,password from users cross join auth_users,repos,auth_items where auth_users.user_id=users.id and auth_users.authitem_id = auth_items.id and auth_items.repo_id = repos.id and repos.reponame = \'' + reponame +'\' order by reponame,authitem,username,authtype'
+        sql = 'select username,password from users cross join auth_users,repos,auth_items where  auth_items.repo_id = repos.id and repos.reponame = \'' + reponame +'\' and users.is_active=1 group by username'
+
     rs = conn.execute(sql)
     for r in rs:
         users.append({'username':r.username,'password':r.password})
