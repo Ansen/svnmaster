@@ -68,7 +68,7 @@ def get_user_passwd(reponame):
         sql = 'select username,password from users'
     else:
         #sql = 'select username,password from users cross join auth_users,repos,auth_items where auth_users.user_id=users.id and auth_users.authitem_id = auth_items.id and auth_items.repo_id = repos.id and repos.reponame = \'' + reponame +'\' order by reponame,authitem,username,authtype'
-        sql = 'select username,password from users cross join auth_users,repos,auth_items where  auth_items.repo_id = repos.id and repos.reponame = \'' + reponame +'\' and users.is_active=1 group by username'
+        sql = 'select username,password from auth_groups cross join uig,groups,users,repos,auth_items where auth_groups.group_id=groups.id and auth_groups.authitem_id = auth_items.id and auth_items.repo_id = repos.id and uig.user_id = users.id and uig.group_id = groups.id and repos.reponame = \'' + reponame +'\' and users.is_active=1 order by username,password'
 
     rs = conn.execute(sql)
     for r in rs:
