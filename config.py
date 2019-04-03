@@ -30,7 +30,7 @@ SVN_HTTPD_USERS = ''
 
 #以下信息不要修改-------------以下信息不要修改-------------以下信息不要修改-------------以下信息不要修改-------------
 #数据库配置
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '\mos\dbs\sm_data.db')
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'mos/dbs/sm_data.db')
 #SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, '.\mos\dbs\db_repository')
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
